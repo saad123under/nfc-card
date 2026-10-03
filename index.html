@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#2a2a2a">
+<title>Robots & More</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body {
+    background: #2a2a2a;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 60px 24px 40px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  /* ===== LOGO ===== */
+  .logo-wrap {
+    width: 240px;
+    height: 90px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 12px 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .logo-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .desc {
+    font-size: 14px;
+    color: #b8b8b8;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    padding: 0 10px;
+  }
+
+  /* ===== LOCATION TEXT ===== */
+  .location-text {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #b8b8b8;
+    line-height: 1.45;
+    margin-bottom: 24px;
+    padding: 0 16px;
+    text-align: left;
+  }
+
+  .location-text i {
+    color: #1a73e8;
+    font-size: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ===== ACTION BUTTONS ===== */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #3d3d3d;
+    background: #383838;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+    background: #444444;
+  }
+
+  .btn i { font-size: 17px; }
+
+  /* Custom icon inside button */
+  .btn .btn-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+    border-radius: 5px;
+  }
+
+  /* Instagram gradient */
+  .btn.instagram {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    border: none;
+  }
+
+  .btn.instagram:active {
+    background: linear-gradient(135deg, #6b2fa0, #d01818, #d99a3d);
+  }
+
+  /* Website button */
+  .btn.website {
+    background: #1a73e8;
+    border: none;
+  }
+
+  .btn.website:active {
+    background: #1557b0;
+  }
+
+  /* Save contact = white */
+  .btn.save {
+    background: #ffffff;
+    color: #0a0a0a;
+    border: none;
+  }
+
+  .btn.save:active {
+    background: #e5e5e5;
+  }
+
+  /* ===== MAP ===== */
+  .map-wrap {
+    width: 100%;
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #3d3d3d;
+    position: relative;
+    background: #383838;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    filter: grayscale(0.15) contrast(1.05);
+  }
+
+  .map-open {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(26, 115, 232, 0.95);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(6px);
+    transition: transform 0.15s, background 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .map-open:active {
+    transform: scale(0.95);
+    background: rgba(21, 87, 176, 1);
+  }
+
+  .map-open i { font-size: 12px; }
+
+  .footer {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #6a6a6a;
+  }
+
+  .footer a {
+    color: #9a9a9a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #3a3a3a;
+    border: 1px solid #4a4a4a;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast i { color: #10b981; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== LOGO ===== -->
+  <div class="logo-wrap">
+    <img src="logo.jpg" alt="Robots & More">
+  </div>
+
+  <p class="desc">
+    Ateliers de robotique et de codage pour jeunes de 6 à 16 ans · Depuis 2015.
+  </p>
+
+  <!-- ===== TEXTE LOCALISATION ===== -->
+  <div class="location-text">
+    <i class="fas fa-location-dot"></i>
+    <span>Angle Rue Chatila et Rue Saria Ibnou Zounaim<br>Casablanca 20000, Maroc</span>
+  </div>
+
+  <!-- ===== BOUTONS ===== -->
+  <div class="actions">
+
+    <button class="btn save" onclick="saveContact()">
+      <i class="fas fa-user-plus"></i> Enregistrer le contact
+    </button>
+
+    <a class="btn" href="tel:+212693456071">
+      <i class="fas fa-phone"></i> Appeler
+    </a>
+
+    <!-- TON ICÔNE PERSONNALISÉE -->
+    <a class="btn website" href="https://www.robotsandmore.ma/" target="_blank">
+      <img class="btn-icon" src="icone.jpg" alt="">
+      Site web
+    </a>
+
+    <a class="btn instagram" href="https://www.instagram.com/robots.and.more" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+
+  </div>
+
+  <!-- ===== CARTE GOOGLE MAPS ===== -->
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps?q=Robots+%26+More,+Angle+Rue+Chatila+et+Rue+Saria+Ibnou+Zounaim,+Casablanca&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen>
+    </iframe>
+
+    <a class="map-open" href="https://www.google.com/maps/search/?api=1&query=Robots+%26+More+Casablanca" target="_blank">
+      <i class="fas fa-diamond-turn-right"></i> Itinéraire
+    </a>
+  </div>
+
+  <p class="footer">
+    Propulsé par <a href="#">YourBrand</a>
+  </p>
+</div>
+
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toast-text">Contact enregistré !</span>
+</div>
+
+<script>
+function saveContact() {
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:More;Robots;;;
+FN:Robots & More
+ORG:Robots & More
+TEL;TYPE=CELL:+212693456071
+URL:https://www.robotsandmore.ma/
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/robots.and.more
+ADR;TYPE=WORK:;;Angle Rue Chatila et Rue Saria Ibnou Zounaim;Casablanca;;20000;Maroc
+NOTE:Robotique, coding & STEM pour enfants et ados.
+END:VCARD`;
+
+  const blob = new Blob([vcard], { type: 'text/vcard' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Robots_And_More.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast('Contact téléchargé !');
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-text').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2200);
+}
+</script>
+
+</body>
+</html>
