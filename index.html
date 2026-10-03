@@ -34,7 +34,6 @@
     animation: fadeUp 0.5s ease both;
   }
 
-  /* ===== LOGO ===== */
   .logo-wrap {
     width: 240px;
     height: 90px;
@@ -63,7 +62,6 @@
     padding: 0 10px;
   }
 
-  /* ===== LOCATION TEXT ===== */
   .location-text {
     display: flex;
     align-items: flex-start;
@@ -84,7 +82,6 @@
     flex-shrink: 0;
   }
 
-  /* ===== ACTION BUTTONS ===== */
   .actions {
     display: flex;
     flex-direction: column;
@@ -117,7 +114,6 @@
 
   .btn i { font-size: 17px; }
 
-  /* Custom icon inside button */
   .btn .btn-icon {
     width: 22px;
     height: 22px;
@@ -126,7 +122,6 @@
     border-radius: 5px;
   }
 
-  /* Instagram gradient */
   .btn.instagram {
     background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
     border: none;
@@ -136,7 +131,6 @@
     background: linear-gradient(135deg, #6b2fa0, #d01818, #d99a3d);
   }
 
-  /* Website button */
   .btn.website {
     background: #1a73e8;
     border: none;
@@ -146,7 +140,6 @@
     background: #1557b0;
   }
 
-  /* Save contact = white */
   .btn.save {
     background: #ffffff;
     color: #0a0a0a;
@@ -157,7 +150,6 @@
     background: #e5e5e5;
   }
 
-  /* ===== MAP ===== */
   .map-wrap {
     width: 100%;
     height: 220px;
@@ -248,7 +240,6 @@
 
 <div class="container">
 
-  <!-- ===== LOGO ===== -->
   <div class="logo-wrap">
     <img src="logo.jpg" alt="Robots & More">
   </div>
@@ -257,13 +248,11 @@
     Ateliers de robotique et de codage pour jeunes de 6 à 16 ans · Depuis 2015.
   </p>
 
-  <!-- ===== TEXTE LOCALISATION ===== -->
   <div class="location-text">
     <i class="fas fa-location-dot"></i>
     <span>Angle Rue Chatila et Rue Saria Ibnou Zounaim<br>Casablanca 20000, Maroc</span>
   </div>
 
-  <!-- ===== BOUTONS ===== -->
   <div class="actions">
 
     <button class="btn save" onclick="saveContact()">
@@ -274,7 +263,6 @@
       <i class="fas fa-phone"></i> Appeler
     </a>
 
-    <!-- TON ICÔNE PERSONNALISÉE -->
     <a class="btn website" href="https://www.robotsandmore.ma/" target="_blank">
       <img class="btn-icon" src="icone.jpg" alt="">
       Site web
@@ -286,7 +274,6 @@
 
   </div>
 
-  <!-- ===== CARTE GOOGLE MAPS ===== -->
   <div class="map-wrap">
     <iframe
       src="https://www.google.com/maps?q=Robots+%26+More,+Angle+Rue+Chatila+et+Rue+Saria+Ibnou+Zounaim,+Casablanca&output=embed"
@@ -324,17 +311,10 @@ ADR;TYPE=WORK:;;Angle Rue Chatila et Rue Saria Ibnou Zounaim;Casablanca;;20000;M
 NOTE:Robotique, coding & STEM pour enfants et ados.
 END:VCARD`;
 
-  const blob = new Blob([vcard], { type: 'text/vcard' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Robots_And_More.vcf';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  const dataUri = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
+  window.location.href = dataUri;
 
-  showToast('Contact téléchargé !');
+  showToast('Ouverture du contact...');
 }
 
 function showToast(msg) {
